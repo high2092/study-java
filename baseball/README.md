@@ -10,10 +10,15 @@
   -[x] 3 스트라이크가 나올 때까지 진행한다.
 
 ## 제약 조건
-1. 메소드당 10라인을 넘지 말 것
-2. depth는 1을 유지할 것 (try - catch 제외)
-3. for 문을 사용하지 말 것 (stream 사용)
-4. Getter를 사용하지 말 것 (View에 보여주기 위한 Getter는 제외)
+-[ ] 메소드당 10라인을 넘지 말 것
+  - main
+-[ ] depth는 1을 유지할 것 (try - catch 제외)
+  - main
+  - check?
+-[ ] for 문을 사용하지 말 것 (stream 사용)
+  - main
+  - check
+-[x] Getter를 사용하지 말 것 (View에 보여주기 위한 Getter는 제외)
 
 ## 궁금증
 ### for 문에 비해 stream이 갖는 장점은 무엇일까?
