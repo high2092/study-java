@@ -15,5 +15,11 @@ public class Main {
     }
     public static void main(String[] args) {
         Arrays.stream(generateHitNumbers()).forEach(System.out::println);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("당신의 이름은?");
+        String username = scanner.nextLine();
+        System.out.println("당신의 나이는?");
+        int age = scanner.nextInt();
+        System.out.println("등록 완료: " + username + " (" + age + ")");
     }
 }
