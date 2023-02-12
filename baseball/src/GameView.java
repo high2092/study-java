@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Game {
+public class GameView {
     public static final ArrayList<Integer> hitNumbers = AnswerGenerator.generate();
 
     public static final int STRIKE_CRITERIA = 5;
@@ -9,23 +9,19 @@ public class Game {
     public static final int BALL = 2;
 
     private static Player player;
-    private static Judgement judgement = new Judgement(hitNumbers);
+    private static GameService gameService = new GameService(hitNumbers);
 
-    public Game() {
-
+    public GameView() {
         boolean isGameOver = false;
         player = IO.register();
+        int count = 0;
         while (isGameOver == false) {
-            isGameOver = playTurn();
+            IO.printPlayTurnText();
+            isGameOver = gameService.playTurn(IO.inputNumbers(STRIKE_CRITERIA));
+            count++;
         }
-
+        IO.printPlayCount(count);
     }
 
-    private static boolean playTurn() {
-        IO.printPlayTurnText();
-        int[] inputNumbers = IO.inputNumbers(STRIKE_CRITERIA);
-        ArrayList<Integer> guessResultCount = Judgement.judge(inputNumbers);
 
-        return guessResultCount.get(STRIKE) == STRIKE_CRITERIA;
-    }
 }

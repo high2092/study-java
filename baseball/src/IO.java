@@ -17,52 +17,25 @@ public class IO {
         return player;
     }
 
-    public static int[] inputNumbers(int count) {
-        int[] result = new int[count];
+    public static InputValues inputNumbers(int count) {
+        ArrayList<Integer> result = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            result[i] = scanner.nextInt(); // TODO: n개의 입력을 모두 받고 유효성 검증을 마친 후 연산 시작하기
+            result.add(scanner.nextInt()); // TODO: n개의 입력을 모두 받고 유효성 검증을 마친 후 연산 시작하기
         }
-        return result;
+
+        InputValues inputValues = new InputValues(result);
+        return inputValues;
     }
     public static void printGuessResult(int[] guessResultCount) {
-        System.out.println("스트라이크: " + guessResultCount[Game.STRIKE]);
-        System.out.println("볼: " + guessResultCount[Game.BALL]);
+        System.out.println("스트라이크: " + guessResultCount[GameView.STRIKE]);
+        System.out.println("볼: " + guessResultCount[GameView.BALL]);
     }
 
     public static void printPlayTurnText() {
-        System.out.println(Game.STRIKE_CRITERIA + "개의 숫자는 순서대로 무엇일까요? (0 이상 9 이하의 서로 다른 정수, 공백으로 구분)");
+        System.out.println(GameView.STRIKE_CRITERIA + "개의 숫자는 순서대로 무엇일까요? (0 이상 9 이하의 서로 다른 정수, 공백으로 구분)");
+    }
+
+    public static void printPlayCount(int count) {
+        System.out.println("와! " + count + "번 만에 정답을 맞히셨어요. 짝짝");
     }
 }
-
-class InputValues {
-    ArrayList<Integer> inputValues;
-
-    public InputValues(ArrayList<Integer> inputValues) {
-        this.inputValues = inputValues;
-        validate();
-    }
-
-    public void push(int value) {
-        inputValues.add(value);
-    }
-
-    public boolean validate() {
-        int MIN = 0, MAX = 9;
-
-        return inputValues.stream().anyMatch(inputValue -> inputValue < MIN || inputValue > MAX);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        inputValues.stream()
-                .map(inputValue -> inputValue + " ")
-                .forEach(stringBuilder::append);
-        return stringBuilder.toString();
-    }
-
-    public ArrayList<Integer> toList() {
-        return this.inputValues;
-    }
-}
-
