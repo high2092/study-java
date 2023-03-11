@@ -1,6 +1,7 @@
 ### 단축키 (IntelliJ, Mac)
 - static import: Option + Enter
 - 타입 자동완성: Option + Command + V
+- Getter, Setter: Command + N
 
 ### 학습정리
 - [@Autowired](https://iseunghan.tistory.com/63)
