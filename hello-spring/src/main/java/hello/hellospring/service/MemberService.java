@@ -29,7 +29,7 @@ public class MemberService {
                 });
     }
 
-    public List<Member> ViewAllMembers() {
+    public List<Member> viewAllMembers() {
         return memberRepository.findAll();
     }
 
