@@ -6,10 +6,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,9 +36,28 @@ public class BasicItemController {
         return "basic/add-form";
     }
 
+//    @PostMapping("/add")
+    public String save(@RequestParam String itemName,
+                       @RequestParam int price,
+                       @RequestParam Integer quantity,
+                       Model model) {
+
+        Item item = new Item(itemName, price, quantity);
+
+        itemRepository.save(item);
+
+        model.addAttribute("item", item);
+        return "basic/item";
+    }
+
     @PostMapping("/add")
-    public String save() {
-        return "";
+    public String save(@ModelAttribute("item") Item item, // 어노테이션 인자 생략 시 클래스명의 첫 글자를 소문자로 바꾼 문자열이 attribute 이름이 됨
+                       Model model) {
+
+        itemRepository.save(item);
+
+//        model.addAttribute("item", item);
+        return "basic/item";
     }
 
     /**
