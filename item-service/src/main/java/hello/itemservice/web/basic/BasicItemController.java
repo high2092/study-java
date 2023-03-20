@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -52,12 +53,15 @@ public class BasicItemController {
 
     @PostMapping("/add")
     public String save(@ModelAttribute("item") Item item, // 어노테이션 인자 생략 시 클래스명의 첫 글자를 소문자로 바꾼 문자열이 attribute 이름이 됨
-                       Model model) {
+                       RedirectAttributes redirectAttributes) {
 
-        itemRepository.save(item);
+
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
 
 //        model.addAttribute("item", item);
-        return "redirect:/basic/items/" + item.getId();
+        return "redirect:/basic/items/{itemId}";
     }
 
     @GetMapping("/{itemId}/edit")
