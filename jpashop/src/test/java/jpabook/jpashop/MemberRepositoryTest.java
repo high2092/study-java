@@ -15,7 +15,7 @@ class MemberRepositoryTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
-//    @Rollback(false)
+    @Rollback(false)
     public void save() {
         // given
         Member member = new Member();
