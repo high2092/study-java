@@ -19,5 +19,5 @@ public class Member {
     private Address address;
 
     @OneToMany(mappedBy = "member") // 클래스에 정의된 멤버 변수명. 읽기 전용 같은 느낌
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>(); // 컬렉션은 필드에서 초기화 후, 변경하지 말 것 (hibernate Entity 영속화 관련 문제)
 }
