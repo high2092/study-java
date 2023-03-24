@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jpabook.jpashop.domain.Member;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,11 @@ public class MemberRepository {
     }
 
     public Member findByName(String name) {
-        return em.createQuery("select m from Member m where m.name = :name", Member.class)
-                .setParameter("name", name).getSingleResult();
+        try {
+            return em.createQuery("select m from Member m where m.name = :name", Member.class)
+                    .setParameter("name", name).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }
