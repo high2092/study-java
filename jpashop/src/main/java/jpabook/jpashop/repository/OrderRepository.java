@@ -20,10 +20,8 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-//    public List<Order> findAll(OrderSearch orderSearch) {
-//        return em.createQuery("select o from Order o join o.member m", Order.class)
-//                .setParameter("status", orderSearch.getOrderStatus())
-//                .setParameter("name", orderSearch.getMemberName())
-//                .getResultList();
-//    }
+    public List<Order> findAll() {
+        return em.createQuery("select o from Order o", Order.class)
+                .getResultList();
+    }
 }
