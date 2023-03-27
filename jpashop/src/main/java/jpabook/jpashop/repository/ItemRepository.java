@@ -16,7 +16,7 @@ public class ItemRepository {
     public void save(Item item) {
         if (item.getId() == null) { // 생성
             em.persist(item);
-        } else { // 수정
+        } else { // 준영속 엔티티의 식별자 값으로 캐시에서 엔티티 조회 후 식별자 외 모든 필드를 새 값으로 대체, 누락된 필드는 null로 초기화되기 때문에 위험하다.
             em.merge(item);
         }
     }

@@ -63,17 +63,11 @@ public class ItemController {
     }
 
     @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute BookForm form) {
-        Book book = new Book();
+    public String updateItem(@PathVariable Long itemId, @ModelAttribute BookForm form) {
+//        Book book = new Book(); // 새로운 객체 -> 영속성 컨텍스트가 관리 X
+//        book.setId(form.getId()); // 기존 식별자 사용 -> 준영속 엔티티라 부름
 
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
-
-        itemService.saveItem(book);
+        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
 
         return "redirect:/items";
     }
